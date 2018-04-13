@@ -1,17 +1,19 @@
 # Stock Prediction using Time Series Analysis
-	Closing Price prediction of Yahoo stocks from 2010 - 2016 using Gated Recurrant Units 
+	Closing Price prediction of Yahoo stocks from 2010 - 2016 using Gated Recurrant Units	
+	Model is already trained and saved in 'stock_price_GRU.h5' file	
+	To obtain the trained model just comment out the lines 47-55 and 60-62, then uncomment the lines 57-58 to load 'stock_price_GRU.h5' file	
 
 #### DATA
 	INPUT_DATA
-	date             open      close        low       high                                      
-	2010-01-04  16.940001  17.100000  16.879999  17.200001
-	2010-01-05  17.219999  17.230000  17.000000  17.230000
-	2010-01-06  17.170000  17.170000  17.070000  17.299999
-	2010-01-07  16.809999  16.700001  16.570000  16.900000
-	2010-01-08  16.680000  16.700001  16.620001  16.760000
+	date             open        low       high      close
+	2010-01-04  16.940001  16.879999  17.200001  17.100000
+	2010-01-05  17.219999  17.000000  17.230000  17.230000
+	2010-01-06  17.170000  17.070000  17.299999  17.170000
+	2010-01-07  16.809999  16.570000  16.900000  16.700001
+	2010-01-08  16.680000  16.620001  16.760000  16.700001
 
 	LABEL_DATA
-	date			  close
+	date		close
 	2010-01-04    17.230000
 	2010-01-05    17.170000
 	2010-01-06    16.700001
@@ -37,11 +39,17 @@ Non-trainable params: 0
 _________________________________________________________________
 
 #### TRAINING
-	Final Epoch
-	 250/1061 [======>.......................] - ETA: 2s - loss: 6.0397e-04
-	1000/1061 [===========================>..] - ETA: 0s - loss: 6.2159e-04
-	1061/1061 [==============================] - 1s 886us/step - loss: 6.1279e-04 - val_loss: 6.1362e-04
+	Epoch 500/500
+	250/1061 [======>.......................] - ETA: 0s - loss: 7.2934e-04
+	750/1061 [====================>.........] - ETA: 0s - loss: 6.7267e-04
+	1061/1061 [==============================] - 0s 111us/step - loss: 6.4617e-04 - val_loss: 6.4601e-04
+
+	32/582 [>.............................] - ETA: 0s
+	352/582 [=================>............] - ETA: 0s
+	582/582 [==============================] - 0s 154us/step
+	Score: 0.000513115886573222	
 
 #### RESULTS
     33% of Data used for Testing 
+    Plot only shows the first last points of test set and predicted values	
 ![alt text](https://github.com/jha-prateek/Stock-Prediction-RNN/blob/master/predicted_test.JPG)

@@ -15,6 +15,7 @@ yahoo = prices[prices['symbol']=='YHOO']
 # preparing input features
 yahoo = yahoo.drop(['symbol'], axis=1)
 yahoo = yahoo.drop(['volume'], axis=1)
+yahoo = yahoo[['open', 'low', 'high', 'close']]
 
 # preparing label data
 yahoo_shift = yahoo.shift(-1)
@@ -24,7 +25,7 @@ label = yahoo_shift['close']
 yahoo.drop(yahoo.index[len(yahoo)-1], axis=0, inplace=True)
 label.drop(label.index[len(label)-1], axis=0, inplace=True)
 
-# # conversion to numpy array
+# conversion to numpy array
 x, y = yahoo.values, label.values
 
 # scaling values for model
@@ -39,7 +40,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.33)
 X_train = X_train.reshape((-1,1,4))
 X_test = X_test.reshape((-1,1,4))
 
-# creating model using tflearn
+# creating model using Keras
 # tf.reset_default_graph()
 
 model_name = 'stock_price_GRU'
@@ -57,7 +58,7 @@ model.compile(loss='mse', optimizer='adam')
 # model = load_model("{}.h5".format(model_name))
 # print("MODEL-LOADED")
 
-model.fit(X_train,y_train,batch_size=250, epochs=1, validation_split=0.1)
+model.fit(X_train,y_train,batch_size=250, epochs=500, validation_split=0.1, verbose=1)
 model.save("{}.h5".format(model_name))
 print('MODEL-SAVED')
 
