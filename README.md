@@ -3,6 +3,8 @@
 	Model is already trained and saved in 'stock_price_GRU.h5' file	
 	To obtain the trained model just comment out the lines 47-55 and 60-62, then uncomment the lines 57-58 to load 'stock_price_GRU.h5' file	
 
+	Highly Recommend using GPU version of Tensorflow for running the model	
+
 #### DATA
 	INPUT_DATA
 	date             open        low       high      close
@@ -13,7 +15,7 @@
 	2010-01-08  16.680000  16.620001  16.760000  16.700001
 
 	LABEL_DATA
-	date		close
+	date		  close
 	2010-01-04    17.230000
 	2010-01-05    17.170000
 	2010-01-06    16.700001
@@ -51,5 +53,5 @@ _________________________________________________________________
 
 #### RESULTS
     33% of Data used for Testing 
-    Plot only shows the first last points of test set and predicted values	
+    Plot only shows the last points of test set and predicted values	
 ![alt text](https://github.com/jha-prateek/Stock-Prediction-RNN/blob/master/predicted_test.JPG)
