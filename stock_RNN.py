@@ -56,10 +56,11 @@ model.compile(loss='mse', optimizer='adam')
 
 # model = load_model("{}.h5".format(model_name))
 # print("MODEL-LOADED")
-# print(model.summary())
-model.fit(X_train,y_train,batch_size=250, epochs=500, validation_split=0.1)
+
+model.fit(X_train,y_train,batch_size=250, epochs=1, validation_split=0.1)
 model.save("{}.h5".format(model_name))
 print('MODEL-SAVED')
+
 score = model.evaluate(X_test, y_test)
 print('Score: {}'.format(score))
 yhat = model.predict(X_test)
