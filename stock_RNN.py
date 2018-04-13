@@ -2,12 +2,10 @@ import pandas as pd
 from keras.layers.core import Dense, Dropout
 from keras.layers.recurrent import GRU
 from keras.models import Sequential, load_model
-import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-import os
 
 prices = pd.read_csv('prices_stock.csv', index_col=['date'])
 
@@ -26,7 +24,7 @@ label = yahoo_shift['close']
 yahoo.drop(yahoo.index[len(yahoo)-1], axis=0, inplace=True)
 label.drop(label.index[len(label)-1], axis=0, inplace=True)
 
-# conversion to numpy array
+# # conversion to numpy array
 x, y = yahoo.values, label.values
 
 # scaling values for model
@@ -46,22 +44,22 @@ X_test = X_test.reshape((-1,1,4))
 
 model_name = 'stock_price_GRU'
 
-# model = Sequential()
-# model.add(GRU(units=512,
-#               return_sequences=True,
-#               input_shape=(1, 4)))
-# model.add(Dropout(0.2))
-# model.add(GRU(units=256))
-# model.add(Dropout(0.2))
-# model.add(Dense(1, activation='sigmoid'))
-# model.compile(loss='mse', optimizer='adam')
+model = Sequential()
+model.add(GRU(units=512,
+              return_sequences=True,
+              input_shape=(1, 4)))
+model.add(Dropout(0.2))
+model.add(GRU(units=256))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation='sigmoid'))
+model.compile(loss='mse', optimizer='adam')
 
-model = load_model("{}.h5".format(model_name))
-print("MODEL-LOADED")
-print(model.summary())
-# model.fit(X_train,y_train,batch_size=250, epochs=500, validation_split=0.1)
-# model.save("{}.h5".format(model_name))
-# print('MODEL-SAVED')
+# model = load_model("{}.h5".format(model_name))
+# print("MODEL-LOADED")
+# print(model.summary())
+model.fit(X_train,y_train,batch_size=250, epochs=500, validation_split=0.1)
+model.save("{}.h5".format(model_name))
+print('MODEL-SAVED')
 score = model.evaluate(X_test, y_test)
 print('Score: {}'.format(score))
 yhat = model.predict(X_test)
