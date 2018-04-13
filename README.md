@@ -1,6 +1,6 @@
-# Stock Prediction using Time Series Analysis
+## Stock Prediction using Time Series Analysis
 
-## MODEL
+# MODEL
 Layer (type)                 Output Shape              Param #   
 =================================================================
 gru_1 (GRU)                  (None, 1, 512)            794112    
@@ -18,3 +18,5 @@ Trainable params: 1,384,961
 Non-trainable params: 0
 _________________________________________________________________
 
+# Validation
+![alt text](https://github.com/jha-prateek/Stock-Prediction-RNN/blob/master/predicted_test.JPG)
